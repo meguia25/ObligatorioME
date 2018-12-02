@@ -1,11 +1,19 @@
 ﻿@model Distribuidora.Models.Producto
 
 @{
-    ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    if (Session["Empleado"] != null)
+    {
+        ViewBag.Title = "Edit";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Session.Abandon();
 
-<h2>Edit</h2>
+        Response.Redirect("~/Home/Index");
+    }
+}
+<h2>Modificar precio venta </h2>
 
 @using (Html.BeginForm())
 {

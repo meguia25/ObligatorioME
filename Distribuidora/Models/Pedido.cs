@@ -15,10 +15,10 @@ namespace Distribuidora.Models
         public Cliente Cliente { get; set; }
 
         public DateTime Fecha { get; set; }
-        public int TotalPedido { get; set; }
-        public Producto Producto { get; set; }
-        public int CantUnidades { get; set; }
-        public int Estado { get; set; } //0 en carrito, 1 confirmado
+        public double TotalPedido { get; set; }
+        public List<Item> Items { get; set; }
+
+
 
     }
 }

@@ -159,6 +159,7 @@
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\EmpleadoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\PedidoesController.cs" />
     <Compile Include="Controllers\ProductoesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -170,13 +171,13 @@
     <Compile Include="Models\Fabricacion.cs" />
     <Compile Include="Models\Fabricado.cs" />
     <Compile Include="Models\Importado.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\ViewPedidos.cs" />
-    <Compile Include="ViewModels\ViewProductos.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Archivos\ProductosTodos.txt" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -191,6 +192,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\JavaScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -214,25 +216,23 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Empleadoes\Create.cshtml" />
-    <Content Include="Views\Empleadoes\Index.cshtml" />
     <Content Include="Views\Productoes\Index.cshtml" />
     <Content Include="Views\Empleadoes\Login.cshtml" />
-    <Content Include="Views\Empleadoes\CargaDeProductos.cshtml" />
-    <Content Include="Views\Empleadoes\AsignarPrecio.cshtml" />
     <Content Include="Views\Clientes\Create.cshtml" />
     <Content Include="Views\Clientes\Index.cshtml" />
-    <Content Include="Views\Clientes\Pedidos.cshtml" />
-    <Content Include="Views\Clientes\Carrito.cshtml" />
-    <Content Include="Views\Empleadoes\Details.cshtml" />
     <Content Include="Views\Clientes\Login.cshtml" />
     <Content Include="Views\Productoes\Details.cshtml" />
     <Content Include="Views\Productoes\Edit.cshtml" />
-    <Content Include="Views\Pedidoes\Create.cshtml" />
-    <Content Include="Views\Pedidoes\Details.cshtml" />
-    <Content Include="Views\Pedidoes\Edit.cshtml" />
-    <Content Include="Views\Pedidoes\Index.cshtml" />
     <Content Include="Views\Productoes\Buscar.cshtml" />
+    <Content Include="Views\Empleadoes\CargaProductos.cshtml" />
+    <Content Include="Views\Empleadoes\Index.cshtml" />
+    <Content Include="Views\Items\AgregarCarrito.cshtml" />
+    <Content Include="Views\Items\Carrito.cshtml" />
+    <Content Include="Views\Pedidoes\ListaPedidos.cshtml" />
+    <Content Include="Views\Items\ConfirmarCarrito.cshtml" />
+    <Content Include="Views\Items\bajarCantidad.cshtml" />
+    <Content Include="Views\Items\aumentarCantidad.cshtml" />
+    <Content Include="Views\Items\borrarProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

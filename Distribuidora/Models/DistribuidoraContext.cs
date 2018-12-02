@@ -21,6 +21,7 @@ namespace Distribuidora.Models
         public DbSet<Fabricacion> Fabricaciones { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<Item> Items { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -20,8 +20,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Empleados", "Details", "Empleadoes")</li>
-                    <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
+                    <li class="dropdown">@Html.ActionLink("Empleados", "Login", "Empleadoes")</li>
+                    <li>@Html.ActionLink("Clientes", "Login", "Clientes")</li>
+@{
+                    if (Session["Cliente"] != null)
+                    {
+                        <li>@Html.ActionLink("Carrito", "Carrito", "Items")</li>
+                    }
+}
                 </ul>
             </div>
         </div>

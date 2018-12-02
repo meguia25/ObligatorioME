@@ -11,11 +11,16 @@ namespace Distribuidora.Models
     [Table("Cliente")]
     public class Cliente
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IdCliente { get; set; }
         [Required]
         public string Nombre { get; set; }
         [Required]
         public string Contrasenia { get; set; }
-        [Key]
+
         public string Email { get; set; }
+
+        public DateTime FechaRegistro { get; set; }
     }
 }

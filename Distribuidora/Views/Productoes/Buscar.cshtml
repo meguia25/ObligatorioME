@@ -1,8 +1,18 @@
 ﻿@model IEnumerable<Distribuidora.Models.Producto>
 
 @{
-    ViewBag.Title = "Buscar";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if(Session["Empleado"] !=null || Session["Cliente"] != null)
+    {
+        ViewBag.Title = "Buscar";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Session.Abandon();
+
+        Response.Redirect("~/Home/Index");
+    }
+
 }
 
 <h2>Buscar</h2>
@@ -14,16 +24,45 @@
          <label>Codigo</label>@Html.RadioButton("filtroBusqueda", "Codigo",true)
          <label>Nombre</label>@Html.RadioButton("filtroBusqueda", "TextoNombre")
          <label>Descripcion</label>@Html.RadioButton("filtroBusqueda", "TextoDescripcion")
-         <label>Rango de precios</label>@Html.RadioButton("filtroBusqueda", "RangoPrecios")
+         <div id="rango">
+             <label>Rango de precios</label>@Html.RadioButton("filtroBusqueda", "RangoPrecios")
+         </div>
          <label>Tipo de producto</label>@Html.RadioButton("filtroBusqueda", "TipoProducto")
     </div>
     <div class="form-group">
-            Filtro: @Html.TextBox("parametroBusqueda")
+        Filtro: @Html.TextBox("parametroBusqueda")
     </div>
-    <div class="form-group">
+        <div class="form-group" id="DDLRangoPrecios">
+            @{
+                List<SelectListItem> listItems = new List<SelectListItem>();
+                listItems.Add(new SelectListItem
+                {
+                    Text = "0 - 200",
+                    Value = "200"
+                });
+                listItems.Add(new SelectListItem
+                {
+                    Text = "201 - 500",
+                    Value = "500",
+                });
+                listItems.Add(new SelectListItem
+                {
+                    Text = "501 -1000",
+                    Value = "1000"
+                });
+                listItems.Add(new SelectListItem
+                {
+                    Text = "+ 1000",
+                    Value = "1001"
+                });
+            }
+            @Html.DropDownList("rangoPrecios", new SelectList(listItems, "Value", "Text"))
+
+        </div>
+        <div class="form-group">
             <input type="submit" value="Buscar" class="btn btn-default" />
-    </div>
-   }
+        </div>
+        }
 </p>
 <table class="table">
     <tr>
@@ -64,8 +103,66 @@
         </td>
         <td>
             @Html.ActionLink("Details", "Details", new { id=item.Codigo }) 
+@{
+        if (Session["Cliente"] != null)
+        {
+            <input type="button" class="btn btn-default" value="Agregar al carrito" onclick='agregar(@item.Codigo)'/>
+        }
+}         
         </td>
     </tr>
 }
 
 </table>
+
+<!-- 
+    si fuera a ser un Ajax POST, probar porque conceptualmente es lo correcto (deberia cambiar el metodo del controlador)
+        function agregar(codigo) {
+        $.ajax({
+            type: "POST",
+            url: "/Items/AgregarCarrito/",
+            data: '{id: "' + codigo + '" }'
+            dataType: "json",
+            success: function (response) {
+                alert("Producto agregado al carrito");
+            },
+            failure: function (response) {
+                alert("Error al agregar a carrito");
+            }
+        });
+    
+    -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>
+    function agregar(codigo) {
+        $.ajax({
+            type: "GET",
+            url: "/Items/AgregarCarrito/" + codigo,
+            dataType: "json",
+            success: function (response) {  
+                //$(".btn-default").hide();
+                alert("Producto agregado al carrito");
+            },
+            failure: function (response) {
+                alert("Error al agregar a carrito");
+            }
+        });
+
+    }
+
+    window.onload = (function () {
+        console.log("ready!");
+     
+        var rangoPrecios = $("#DDLRangoPrecios").hide();
+        $("input[name=filtroBusqueda]").click(function () {
+            if ($(this).val() == "RangoPrecios") {
+                $("#parametroBusqueda").hide();
+                $("#DDLRangoPrecios").show();
+            }
+            else {
+                $("#parametroBusqueda").show();
+                $("#DDLRangoPrecios").hide();
+            }
+        })
+    });
+</script>

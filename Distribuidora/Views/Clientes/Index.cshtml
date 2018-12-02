@@ -1,15 +1,26 @@
-﻿@model IEnumerable<Distribuidora.Models.Cliente>
+﻿@{
+    if (Session["Cliente"] != null)
+    {
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Session.Abandon();
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+        Response.Redirect("~/Clientes/Login");
+    }
+
 }
 
-<h2>Index</h2>
-
+<h2>Menu clientes</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
-
+    @Html.ActionLink("Buscar", "Buscar", "Productoes")
 </p>
-
+<p>
+    @Html.ActionLink("Carrito", "Carrito", "Items")
+</p>
+<p>
+    @Html.ActionLink("Pedidos", "Listapedidos", "Pedidoes")
+</p>
 

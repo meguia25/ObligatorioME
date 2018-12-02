@@ -1,0 +1,30 @@
+Producto Importado 2|producto de origen importado 2		|100|150|*	|China		|100|empleado1@empleado.com
+Producto Importado 3|producto de origen importado 3		|100|150|*	|Sri Lanka	|100|empleado1@empleado.com
+Producto Importado 4|producto de origen importado 4		|100|150|*	|Chile		|100|empleado1@empleado.com
+Producto Importado 5|producto de origen importado 5		|100|150|*	|Japón		|100|empleado1@empleado.com
+Producto Importado 6|producto de origen importado 6		|100|150|*	|China		|100|empleado1@empleado.com
+Producto Importado 7|producto de origen importado 7		|100|150|*	|China		|100|empleado1@empleado.com
+Producto Importado 8|producto de origen importado 8		|100|150|*	|Sri Lanka	|100|empleado1@empleado.com
+Producto Importado 9|producto de origen importado 9		|100|150|*	|Vietnam	|100|empleado1@empleado.com
+Producto Importado 10|producto de origen importado 10	|100|150|*	|Vietnam	|100|empleado1@empleado.com
+Producto Importado 11|producto de origen importado 11	|100|150|*	|Vietnam	|100|empleado1@empleado.com
+Producto Importado 12|producto de origen importado 12	|100|150|*	|China		|100|empleado1@empleado.com
+Producto Importado 13|producto de origen importado 13	|100|150|*	|China		|100|empleado1@empleado.com
+Producto Importado 14|producto de origen importado 14	|100|150|*	|Brasil		|100|empleado1@empleado.com
+Producto Importado 15|producto de origen importado 15	|100|150|*	|Brasil		|100|empleado1@empleado.com
+Producto Importado 16|producto de origen importado 16	|100|150|*	|China		|100|empleado1@empleado.com
+Producto Fabricado 1|producto de fabricado 1			|100|150|100|*			|*	|empleado1@empleado.com
+Producto Fabricado 2|producto de fabricado 1			|100|150|100|*			|*	|empleado1@empleado.com
+Producto Fabricado 3|producto de fabricado 1			|100|150|100|*			|*	|empleado1@empleado.com
+Producto Fabricado 4|producto de fabricado 1			|100|150|100|*			|*	|empleado1@empleado.com
+Producto Fabricado 5|producto de fabricado 1			|100|150|100|*			|*	|empleado1@empleado.com
+Producto Fabricado 6|producto de fabricado 1			|100|150|100|*			|*	|empleado1@empleado.com
+Producto Fabricado 7|producto de fabricado 1			|100|150|100|*			|*	|empleado1@empleado.com
+Producto Fabricado 8|producto de fabricado 1			|100|150|100|*			|*	|empleado1@empleado.com
+Producto Fabricado 9|producto de fabricado 1			|100|150|100|*			|*	|empleado1@empleado.com
+Producto Fabricado 10|producto de fabricado 1			|100|150|100|*			|*	|empleado1@empleado.com
+Producto Fabricado 11|producto de fabricado 1			|100|150|100|*			|*	|empleado1@empleado.com
+Producto Fabricado 12|producto de fabricado 1			|100|150|100|*			|*	|empleado1@empleado.com
+Producto Fabricado 13|producto de fabricado 1			|100|150|100|*			|*	|empleado1@empleado.com
+Producto Fabricado 14|producto de fabricado 1			|100|150|100|*			|*	|empleado1@empleado.com
+Producto Fabricado 15|producto de fabricado 1			|100|150|100|*			|*	|empleado1@empleado.com

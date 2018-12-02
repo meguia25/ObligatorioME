@@ -1,0 +1,25 @@
+﻿@model Distribuidora.Models.Empleado
+
+
+@{
+    if (Session["Empleado"] != null)
+    {
+        ViewBag.Title = "CargaProductos";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Session.Abandon();
+
+        Response.Redirect("~/Home/Index");
+    }
+
+}
+
+<h2>CargaProductos</h2>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Cargar productos" class="btn btn-default" />
+    </div>
+</div>

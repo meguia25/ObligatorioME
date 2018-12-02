@@ -1,12 +1,24 @@
-﻿@model IEnumerable<Distribuidora.Models.Empleado>
+﻿@{
+    if (Session["Empleado"] != null)
+    {
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Session.Abandon();
 
-@{
-    ViewBag.Title = "Empleados";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+        Response.Redirect("~/Empleadoes/Login");
+    }
+
 }
 
-<h2>Index</h2>
+<h2>Menu empleados</h2>
 
 <p>
-    @Html.ActionLink("Create", "Create", "Empleadoes")
+    @Html.ActionLink("Buscar", "Buscar", "Productoes")
 </p>
+<p>
+    @Html.ActionLink("Carga de productos (txt)", "CargaProductos", "Empleadoes")
+</p>
+

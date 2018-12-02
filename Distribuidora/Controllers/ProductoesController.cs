@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Distribuidora.Models;
-using Distribuidora.ViewModels;
 
 namespace Distribuidora.Controllers
 {   
@@ -83,11 +82,12 @@ namespace Distribuidora.Controllers
         }
         #endregion
 
-        #region Buscar
+        #region Buscar (sin terminar)
         //[HttpPost]
-        public ActionResult Buscar(string filtroBusqueda, string parametroBusqueda)
+        public ActionResult Buscar(string filtroBusqueda, string parametroBusqueda, string rangoPrecios)
         {
             List<Producto> productos = new List<Producto>();
+            //ViewProductos vp = new ViewProductos(fabricado, importado);
             using(DistribuidoraContext db = new DistribuidoraContext())
             {
                 if (filtroBusqueda == "Codigo")
@@ -97,21 +97,37 @@ namespace Distribuidora.Controllers
                 }
                 else if (filtroBusqueda == "TextoNombre")
                 {
-                    productos = db.Productos.Where(p => p.Nombre.Contains("/" + parametroBusqueda + "/")).ToList();
+                    productos = db.Productos.Where(p => p.Nombre.Contains(parametroBusqueda)).ToList();
                 }
                 else if (filtroBusqueda == "TextoDescripcion")
                 {
-                    productos = db.Productos.Where(p => p.Descripcion.Contains("/" + parametroBusqueda + "/")).ToList();
+                    productos = db.Productos.Where(p => p.Descripcion.Contains(parametroBusqueda)).ToList();
                 }
                 else if (filtroBusqueda == "RangoPrecios")
                 {
-                    //como lo resuelvo? pongo una dropdown list? valores ya predeterminados, tipo ML
+                    int precio = Int32.Parse(rangoPrecios);
+                    if(precio == 200)
+                    {
+                        productos = db.Productos.Where(p => p.PrecioVenta >= 0 && p.PrecioVenta <= 200).ToList();
+                    }
+                    else if(precio == 500)
+                    {
+                        productos = db.Productos.Where(p => p.PrecioVenta >= 201 && p.PrecioVenta <= 500).ToList();
+                    }
+                    else if (precio == 1000)
+                    {
+                        productos = db.Productos.Where(p => p.PrecioVenta >= 501 && p.PrecioVenta <= 1000).ToList();
+                    }
+                    else if (precio == 1001)
+                    {
+                        productos = db.Productos.Where(p => p.PrecioVenta <= 1001).ToList();
+                    }
                 }
                 else if (filtroBusqueda == "TipoProducto")
                 {
                     if (parametroBusqueda == "Fabricado")
                     {
-                        productos = db.Productos.Where(p => p.Fabricado).ToList();
+                        //productos = db.Productos.Where(p => p.Codigo).ToList();
                         //como accedo a Fabricado o importado? con el view models, pero me falta la consulta
                     }
                     if (parametroBusqueda == "Importado")
@@ -132,7 +148,6 @@ namespace Distribuidora.Controllers
         }
  
         #endregion
-
 
         #region Dispose
         protected override void Dispose(bool disposing)

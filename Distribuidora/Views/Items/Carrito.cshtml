@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Distribuidora.Models.Item>
+
+@{
+    if (Session["Cliente"] != null)
+    {
+        ViewBag.Title = "Carrito";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Session.Abandon();
+
+        Response.Redirect("~/Home/Index");
+    }
+}
+<h2>Carrito</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantUnidades)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantUnidades)
+        </td>
+        <td>
+            <input type="button" class="btn btn-default" value="+" onclick='agregarUno(@item.Producto.Codigo)' />
+            <input type="button" class="btn btn-default" value="-" onclick='borrarUno(@item.Producto.Codigo)' />
+            <input type="button" class="btn btn-default" value="Borrar del carrito" onclick='eliminarUno(@item.Producto.Codigo)' />
+        </td>
+    </tr>
+}
+</table>
+
+<div class="btn btn-default">
+    @Html.ActionLink("Confirmar carrito", "ConfirmarCarrito", "Items")
+</div>
+
+<script>
+    function borrarUno(codigo) {
+        $.ajax({
+            type: "GET",
+            url: "/Items/bajarCantidad/" + codigo,
+            dataType: "json",
+            success: function (response) {
+            },
+            failure: function (response) {
+                console.log("error al agregar");
+            }
+        });
+        location.reload();
+    }
+    function agregarUno(codigo) {
+        $.ajax({
+            type: "GET",
+            url: "/Items/aumentarCantidad/" + codigo,
+            dataType: "json",
+            success: function (response) {
+            },
+            failure: function (response) {
+                console.log("error al sacar");
+            }
+        });
+        location.reload();
+    }
+    function eliminarUno(codigo) {
+        $.ajax({
+            type: "GET",
+            url: "/Items/borrarProducto/" + codigo,
+            dataType: "json",
+            success: function (response) {
+
+            },
+            failure: function (response) {
+                console.log("error al eliminar");
+
+            }
+        });
+        location.reload();
+    }
+</script>

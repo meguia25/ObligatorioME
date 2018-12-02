@@ -40,19 +40,20 @@ namespace Distribuidora.Controllers
                 clienteUsuario = db.Clientes.FirstOrDefault(e => e.Email == email && e.Contrasenia == contrasenia);
                 if (clienteUsuario != null)
                 {
+                    Session["Cliente"] = clienteUsuario;
                     return RedirectToAction("Index", "Clientes");
                 }
                 else
                 {
-                    ModelState.AddModelError("Error", "Email o contraseña incorrectos");
+                    return RedirectToAction("Error", "Shared");
                 }
-            return View(u);
             }
         }
-            
+
 
         #endregion
 
+        #region Alta usuario
         // GET: Clientes/Create
         public ActionResult Create()
         {
@@ -68,15 +69,27 @@ namespace Distribuidora.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (ValidacionContrasenia(cliente.Contrasenia)){
-                    db.Clientes.Add(cliente);
+                if (ValidacionContrasenia(cliente.Contrasenia) && !buscarCliente(cliente.Email))
+                {
+                    Cliente clienteNuevo = new Cliente()
+                    {
+                        Nombre = cliente.Nombre,
+                        Email = cliente.Email,
+                        FechaRegistro = DateTime.Now,
+                        Contrasenia = cliente.Contrasenia
+                    };
+                    db.Clientes.Add(clienteNuevo);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Clientes");
+                }
+                else
+                {
+                    return RedirectToAction("Error", "Shared");
                 }
 
             }
 
-            return View(cliente);
+            return RedirectToAction("Index", "Clientes");
         }
 
         public bool ValidacionContrasenia(string Contrasenia)
@@ -91,63 +104,30 @@ namespace Distribuidora.Controllers
             return false;
         }
 
-        // GET: Clientes/Edit/5
-        public ActionResult Edit(string id)
+        public bool buscarCliente(string Email)
         {
-            if (id == null)
+            using(DistribuidoraContext db = new DistribuidoraContext())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Cliente cliente = db.Clientes.Find(id);
-            if (cliente == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cliente);
-        }
+                Cliente cli = (from c in db.Clientes
+                               where c.Email == Email
+                               select c).SingleOrDefault();
+                Empleado emp = (from e in db.Empleados
+                                where e.Email == Email
+                                select e).SingleOrDefault();
 
-        // POST: Clientes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Email,Nombre,Contrasenia")] Cliente cliente)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(cliente).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(cliente);
+                if(cli == null && emp == null)
+                {
+                    return false;
+                }
+               else
+                {
+                    return true;
+                }
+            }        
         }
-
-        // GET: Clientes/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Cliente cliente = db.Clientes.Find(id);
-            if (cliente == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cliente);
-        }
-
-        // POST: Clientes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            Cliente cliente = db.Clientes.Find(id);
-            db.Clientes.Remove(cliente);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
+        #endregion
+            
+        #region Dispose
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -156,5 +136,6 @@ namespace Distribuidora.Controllers
             }
             base.Dispose(disposing);
         }
+        #endregion
     }
 }

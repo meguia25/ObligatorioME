@@ -54,4 +54,3 @@ C:\Users\Mariana Eguia\Documents\Facultad\DISTRIBUIDORA_ME\ObligatorioME\Distrib
 C:\Users\Mariana Eguia\Documents\Facultad\DISTRIBUIDORA_ME\ObligatorioME\Distribuidora\bin\EntityFramework.SqlServer.dll
 C:\Users\Mariana Eguia\Documents\Facultad\DISTRIBUIDORA_ME\ObligatorioME\Distribuidora\bin\EntityFramework.xml
 C:\Users\Mariana Eguia\Documents\Facultad\DISTRIBUIDORA_ME\ObligatorioME\Distribuidora\bin\EntityFramework.SqlServer.xml
-C:\Users\Mariana Eguia\Documents\Facultad\DISTRIBUIDORA_ME\ObligatorioME\Distribuidora\obj\Debug\Distribuidora.csprojResolveAssemblyReference.cache
